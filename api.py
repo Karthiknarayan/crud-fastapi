@@ -27,3 +27,8 @@ def addTeam(team:Team):
     newid=len(dummydatabase.keys())+1
     dummydatabase[newid]=team
     return dummydatabase
+#modify the value in the dummydatabase based on id
+@app.put("/modify")
+def modifyteam(id:int, team:Team):
+    dummydatabase[id]=team
+    return dummydatabase
