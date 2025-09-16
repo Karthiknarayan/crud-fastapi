@@ -32,7 +32,7 @@ def addTeam(team:Team):
 def modifyteam(id:int, team:Team):
     dummydatabase[id]=team
     return dummydatabase
-
+#this is used to delete the object in the dummydatabase based on id if it is present
 @app.delete('/{id}')
 def deleteteam(id:int):
     if id in dummydatabase:
