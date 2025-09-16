@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from model import Team
 app= FastAPI()
 dummydatabase={
@@ -32,3 +32,12 @@ def addTeam(team:Team):
 def modifyteam(id:int, team:Team):
     dummydatabase[id]=team
     return dummydatabase
+
+@app.delete('/{id}')
+def deleteteam(id:int):
+    if id in dummydatabase:
+        deleteteam=dummydatabase[id]
+        del dummydatabase[id]
+        return {"message": "Team deleted successfully", "deleted team": deleteteam}
+    else:
+        raise HTTPException(status_code=404, detail="Team not found")
